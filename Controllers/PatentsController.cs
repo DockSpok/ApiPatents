@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-//using Microsoft.AspNetCore.JsonPatch;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using ApiPatents.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApiPatents.Controllers
 {
+    [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
     public class PatentsController : ControllerBase

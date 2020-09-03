@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ApiPatents.Models
 {
@@ -56,7 +54,7 @@ namespace ApiPatents.Models
 
         public void DeletePatent(int id)
         {
-            if (_items[id] != null) // inseri
+            if (_items[id] != null) 
             {
                 _items.Remove(id);
             }

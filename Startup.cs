@@ -1,16 +1,11 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using ApiPatents.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Models;
 
 namespace ApiPatents
 {
@@ -27,7 +22,27 @@ namespace ApiPatents
         {
             services.AddSingleton<IRepoPatent, PatentRepository>();
             services.AddControllers();
-            services.AddSwaggerGen();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "API do Sistema para Recuperação e Inferência de Informação sobre a COVID-19",
+                    Description = "ASP.NET Core Web API para intercâmbio de dados entre aplicativos do projeto",
+                    TermsOfService = new Uri("https://github.com/Iniciacao-Cientifica-COVID-19-2020"),
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Contato",
+                        Email = "wesleydiasmaciel@gmail.com",
+                        Url = new Uri("https://github.com/Iniciacao-Cientifica-COVID-19-2020"),
+                    },
+                    License = new OpenApiLicense
+                    {
+                        Name = "Todos os direitos reservados ao Instituto Anima.",
+                        Url = new Uri("https://github.com/Iniciacao-Cientifica-COVID-19-2020"),
+                    }
+                });
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -41,7 +56,7 @@ namespace ApiPatents
 
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "API V1");
             });
 
             app.UseHttpsRedirection();
